@@ -6,11 +6,6 @@ import "./App.css";
 const App = () => {
    const [count, setCount] = useState(0);
 
-   let a = 2;
-   console.log(a);
-
-   a = "Sd";
-
    return (
       <>
          <div>
