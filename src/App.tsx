@@ -6,7 +6,7 @@ import "./App.css";
 const App = () => {
    const [count, setCount] = useState(0);
 
-   let a: number = 2;
+   let a = 2;
    console.log(a);
 
    a = "Sd";
@@ -24,6 +24,7 @@ const App = () => {
          <h1>Vite + React</h1>
          <div className="card">
             <button
+               type="button"
                onClick={() => {
                   setCount((count) => count + 1);
                }}
