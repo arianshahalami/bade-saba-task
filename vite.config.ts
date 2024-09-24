@@ -11,11 +11,11 @@ export default defineConfig({
    },
 
    css: {
-      preprocessorOptions: {
-         scss: {
-            additionalData: `@import "./src/styles/mixins/index.scss";`,
-         },
-      },
+      // preprocessorOptions: {
+      //    scss: {
+      //       additionalData: `@import "./src/styles/mixins/index.scss";`,
+      //    },
+      // },
 
       modules: {
          localsConvention: "camelCaseOnly",

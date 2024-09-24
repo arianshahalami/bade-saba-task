@@ -1,0 +1,53 @@
+$theme-colors: (
+   "primary": #432959,
+   "danger": #d32f2f,
+) !default;
+$enable-shadows: true;
+$card-box-shadow: 0px 0px 17px 4px rgba(168, 168, 168, 0.88) !default;
+$spacer: 1rem !default;
+$spacers: (
+   0: 0,
+   25: $spacer * 0.25,
+   50: $spacer * 0.5,
+   100: $spacer * 1,
+   125: $spacer * 1.25,
+   150: $spacer * 1.5,
+   175: $spacer * 1.75,
+   200: $spacer * 2,
+   250: $spacer * 2.5,
+   300: $spacer * 3,
+   350: $spacer * 3.5,
+   400: $spacer * 4,
+   500: $spacer * 5,
+   600: $spacer * 6,
+   700: $spacer * 7,
+   800: $spacer * 8,
+   900: $spacer * 9,
+) !default;
+
+$font-size-base: 1rem !default;
+
+$h1-font-size: $font-size-base * 2.5 !default;
+$h2-font-size: $font-size-base * 2 !default;
+$h3-font-size: $font-size-base * 1.75 !default;
+$h4-font-size: $font-size-base * 1.5 !default;
+$h5-font-size: $font-size-base * 1.25 !default;
+$h6-font-size: $font-size-base !default;
+$text7-font-size: $font-size-base * 0.85 !default;
+$text8-font-size: $font-size-base * 0.75 !default;
+$text9-font-size: $font-size-base * 0.5 !default;
+$text10-font-size: $font-size-base * 0.36 !default;
+$font-sizes: (
+   1: $h1-font-size,
+   2: $h2-font-size,
+   3: $h3-font-size,
+   4: $h4-font-size,
+   5: $h5-font-size,
+   6: $h6-font-size,
+   7: $text7-font-size,
+   8: $text8-font-size,
+   9: $text9-font-size,
+   10: $text10-font-size,
+) !default;
+
+@import "bootstrap/scss/bootstrap";
