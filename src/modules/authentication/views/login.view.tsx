@@ -98,7 +98,7 @@ export const LoginView = () => {
                                  <h2 className="h5 fw-medium">نرم‌افزار باد صبا</h2>
                               </div>
                               <div>
-                                 <p className="text-center fs-8">
+                                 <p className="text-center fs-7">
                                     کلیه حقوق این وب‌سایت متعلق به
                                     <strong className="fw-semibold"> شرکت پیشگامان موج تلفن همراه </strong>
                                     است.

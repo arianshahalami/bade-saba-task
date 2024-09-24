@@ -11,17 +11,16 @@
       display: flex;
       flex-direction: row;
       overflow: hidden;
-      min-width: 720px;
+      min-width: 780px;
       max-width: 1080px;
-   }
-
-   .card-body {
-      padding: 2rem 1rem;
-      height: 100%;
    }
 
    .login-box-right {
       height: 100%;
+      .card-body {
+         padding: 2rem 1rem;
+         height: 100%;
+      }
    }
 
    .login-box-left {
@@ -31,6 +30,10 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      height: 400px;
+      height: 460px;
+      .card-body {
+         padding: 2rem 1.5rem;
+         height: 100%;
+      }
    }
 }
