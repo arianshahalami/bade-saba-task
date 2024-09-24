@@ -16,16 +16,15 @@ export const router = createBrowserRouter([
       children: [
          {
             path: "/",
-            element: <Navigate to="/auth/username" />,
-         },
-
-         {
-            path: "/auth/login",
-            element: <div>Hello world!</div>,
+            element: <Navigate to="/permissions" />,
          },
          {
             path: "/auth/login",
             element: <div>Hello world!</div>,
+         },
+         {
+            path: "/permissions",
+            element: <div>dashboard</div>,
          },
          {
             path: "*",
