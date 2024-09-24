@@ -1,0 +1,36 @@
+.login-box-holder {
+   width: 100%;
+   display: flex;
+   align-items: center;
+   min-height: 100vh;
+   justify-content: center;
+   padding: 3rem 1rem;
+
+   .card {
+      border-radius: 1rem;
+      display: flex;
+      flex-direction: row;
+      overflow: hidden;
+      min-width: 720px;
+      max-width: 1080px;
+   }
+
+   .card-body {
+      padding: 2rem 1rem;
+      height: 100%;
+   }
+
+   .login-box-right {
+      height: 100%;
+   }
+
+   .login-box-left {
+      background: rgb(47, 8, 68);
+      background: linear-gradient(149deg, rgba(47, 8, 68, 1) 0%, rgba(64, 39, 89, 1) 100%);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 400px;
+   }
+}

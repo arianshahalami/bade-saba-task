@@ -1,9 +1,10 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import { Suspense } from "react";
 
+import { App } from "@/App.tsx";
 import { GeneralErrorHandler } from "@/components/general-error";
 import { NotFoundView } from "@/modules/error";
-import { App } from "@/App.tsx";
+import { LoginView } from "@/modules/authentication";
 
 export const router = createBrowserRouter([
    {
@@ -20,7 +21,7 @@ export const router = createBrowserRouter([
          },
          {
             path: "/auth/login",
-            element: <div>Hello world!</div>,
+            element: <LoginView />,
          },
          {
             path: "/permissions",
