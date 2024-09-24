@@ -1,9 +1,9 @@
-const App = () => {
+import { Outlet } from "react-router-dom";
+
+export const App = () => {
    return (
       <div>
-         <p>asdasd</p>
+         <Outlet />
       </div>
    );
 };
-
-export default App;
