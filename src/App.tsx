@@ -1,9 +1,10 @@
 import { Outlet } from "react-router-dom";
+import { ThemeProvider } from "react-bootstrap";
 
 export const App = () => {
    return (
-      <div>
+      <ThemeProvider dir="rtl">
          <Outlet />
-      </div>
+      </ThemeProvider>
    );
 };
