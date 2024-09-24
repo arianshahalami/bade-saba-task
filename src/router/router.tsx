@@ -5,6 +5,7 @@ import { App } from "@/App.tsx";
 import { GeneralErrorHandler } from "@/components/general-error";
 import { NotFoundView } from "@/modules/error";
 import { LoginView } from "@/modules/authentication";
+import { AddPermissionView } from "@/modules/permission";
 
 export const router = createBrowserRouter([
    {
@@ -25,7 +26,7 @@ export const router = createBrowserRouter([
          },
          {
             path: "/permissions",
-            element: <div>dashboard</div>,
+            element: <AddPermissionView />,
          },
          {
             path: "*",
