@@ -1,9 +1,9 @@
+import { useState } from "react";
 import { Button, Col, Row, Stack, Form, Container } from "react-bootstrap";
 import { BsChevronRight } from "react-icons/bs";
 import { type INavMenuItem, NavMenu } from "@/components/nav-menu/nav-menu.component.tsx";
 import products from "@/fake-data/products.json";
-import { useState } from "react";
-// import { CategorySelector } from "@/modules/permission/components/category-selector.component.tsx";
+import { CategorySelector } from "@/modules/permission/components/category-selector.component.tsx";
 
 const mappedProducts = products.map((product) => ({ name: product.name, id: product._id }));
 export const AddPermissionView = () => {
@@ -14,6 +14,7 @@ export const AddPermissionView = () => {
       active: true,
       actionIds: [],
    });
+   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
    const onNavMenuItem = (item: INavMenuItem) => {
       setActiveProduct(item);
@@ -23,8 +24,11 @@ export const AddPermissionView = () => {
       setNewRoleData((prev) => ({ ...prev, name: newRoleTitle }));
    };
 
-   console.log(newRoleData);
+   const onSelectCategory = (categories: string[]) => {
+      setSelectedCategories(categories);
+   };
 
+   console.log(newRoleData);
    return (
       <>
          <div className="py-150 bg-primary mb-150" />
@@ -60,7 +64,11 @@ export const AddPermissionView = () => {
                         onNewRoleTitleChange(target.value);
                      }}
                   />
-                  {/* <CategorySelector selectedProductId={activeProduct.id} /> */}
+                  <CategorySelector
+                     selectedProductId={activeProduct.id}
+                     selectedCategories={selectedCategories}
+                     onSelectCategory={onSelectCategory}
+                  />
                </Col>
 
                <Col xs={6}>2 of 3 (wider)</Col>
