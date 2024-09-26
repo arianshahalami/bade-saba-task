@@ -42,7 +42,7 @@ export const LoginView = () => {
          <div className={styles.loginBoxHolder}>
             <Card className={styles.card}>
                <Row className="g-0 w-100">
-                  <Col>
+                  <Col xs={{ span: 12, order: 2 }} lg={{ span: 6, order: 1 }}>
                      <div className={styles.loginBoxRight}>
                         <CardBody className={styles.cardBody}>
                            <div className="h-100 d-flex flex-column justify-content-between">
@@ -83,7 +83,7 @@ export const LoginView = () => {
                         </CardBody>
                      </div>
                   </Col>
-                  <Col>
+                  <Col xs={{ span: 12, order: 1 }} lg={{ span: 6, order: 2 }}>
                      <div className={styles.loginBoxLeft}>
                         <CardBody className={styles.cardBody}>
                            <div className="d-flex flex-column align-items-center justify-content-between h-100">
