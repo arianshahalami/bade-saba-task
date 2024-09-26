@@ -44,4 +44,4 @@ to run the application
   vite preview
 ```
 
-#### If you run into any issues with the application or have any questions about the architecture or code, I’d really appreciate it if you reach out to me :))
+#### If you run into any issues with the application or have any questions about the architecture or code, I’d really appreciate it if you reach out to me 😄👋
