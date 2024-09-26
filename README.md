@@ -8,7 +8,7 @@ This is role-manager application protected by simple login page
 -  Vite
 -  Sass
 
-## Features
+## ⚡️ Features
 
 -  **Vite:** For its fast development, optimized builds, native ES module support, and seamless integration with modern frameworks like React and TypeScript. Its minimal configuration and fast HMR significantly improved our workflow and performance.
 
@@ -18,7 +18,7 @@ This is role-manager application protected by simple login page
 
 -  **git flow:** to organize development with separate branches for features, releases, and hotfixes. This ensures a clear workflow, stable production, and smooth releases.
 
-## Deployment
+## 🛠 Deployment
 
 This project uses **pnpm**, so npm commands will not work. Please use pnpm for all package management tasks.
 
@@ -42,6 +42,13 @@ to run the application
 
 ```bash
   vite preview
+```
+
+user credential:
+
+```bash
+  username: arian
+  password: 123
 ```
 
 #### If you run into any issues with the application or have any questions about the architecture or code, I’d really appreciate it if you reach out to me 😄👋
