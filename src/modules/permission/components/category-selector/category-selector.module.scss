@@ -1,0 +1,19 @@
+.categorySelector {
+   .category-selector-card-main {
+      border: 2px solid #c2c4c3;
+      box-shadow: none;
+      padding: 0.5rem 0.5rem;
+      background-color: #f9f9f9;
+
+      .category-selector-card-body {
+         padding: 0;
+         background-color: transparent;
+      }
+   }
+
+   .category-selector-card {
+      box-shadow: none;
+      border: none;
+      background-color: transparent;
+   }
+}
