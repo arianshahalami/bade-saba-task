@@ -1,18 +1,24 @@
 import { useState } from "react";
-import { Button, Col, Row, Stack, Form, Container } from "react-bootstrap";
 import { BsChevronRight } from "react-icons/bs";
 import { type INavMenuItem, NavMenu } from "@/components/nav-menu/nav-menu.component.tsx";
-import products from "@/fake-data/products.json";
+
+import { Button, Col, Row, Stack, Form, Container } from "react-bootstrap";
 import { CategorySelector } from "@/modules/permission/components/category-selector/category-selector.component.tsx";
 import { CategoryAccessList } from "@/modules/permission/components/category-access-list/category-access-list.component.tsx";
-import rawActions from "@/fake-data/actions.json";
+import { useCheckCredentials } from "@/hooks/use-check-credentials.ts";
+
 import { accessLevels } from "@/constants/category-access-levels.constant.ts";
+import products from "@/fake-data/products.json";
+import rawActions from "@/fake-data/actions.json";
+import { Navigate } from "react-router-dom";
 
 export type IAccessTypes = "read" | "edit" | "create";
 
 const mappedProducts = products.map((product) => ({ name: product.name, id: product._id }));
 
 export const AddPermissionView = () => {
+   const isUserVarified = useCheckCredentials();
+
    const [activeProduct, setActiveProduct] = useState(mappedProducts[0]);
    const [newRoleData, setNewRoleData] = useState({
       name: "",
@@ -62,10 +68,7 @@ export const AddPermissionView = () => {
       }).then(async (res) => res.json());
    };
 
-   console.log("categoriesAccess", categoriesAccess);
-   console.log("selectedCategories", selectedCategories);
-
-   return (
+   return isUserVarified ? (
       <>
          <div className="py-150 bg-primary mb-150" />
          <Container>
@@ -162,5 +165,7 @@ export const AddPermissionView = () => {
             </Stack>
          </Container>
       </>
+   ) : (
+      <Navigate to="/auth/login" />
    );
 };
