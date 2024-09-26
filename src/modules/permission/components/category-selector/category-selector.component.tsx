@@ -1,35 +1,20 @@
 import rawCategories from "@/fake-data/categoriesTree.json";
-import { Accordion, Form, Card, CardBody } from "react-bootstrap";
+import { Accordion, Card, CardBody, Form, InputGroup } from "react-bootstrap";
 import styles from "./category-selector.module.scss";
 import { useState } from "react";
-import { BsChevronUp } from "react-icons/bs";
-
-export interface ICategory {
-   id: string;
-   productId?: string;
-   name: string;
-   children?: ICategory[];
-}
-
-interface ICategorySelectorProps {
-   readonly selectedProductId: string;
-   readonly selectedCategories: string[];
-   readonly onSelectCategory: (selectedCategories: string[]) => void;
-}
-
-interface IInfiniteNestedCategoryListProps {
-   readonly categoryData: ICategory;
-   readonly selectedCategories: string[];
-   readonly isParent: boolean;
-   readonly onCheck: (selectedCategoryData: string[]) => void;
-}
+import { BsChevronUp, BsSearch } from "react-icons/bs";
+import {
+   type ICategory,
+   type ICategorySelectorProps,
+   type IInfiniteNestedCategoryListProps,
+} from "./category-selector.type.ts";
 
 export const InfiniteNestedCategoryList = (props: IInfiniteNestedCategoryListProps) => {
-   const { selectedCategories, categoryData, onCheck, isParent } = props;
+   const { selectedCategories, categoryData, onCheck, isParent, categoriesAccess } = props;
    return (
       <Accordion activeKey={selectedCategories}>
          <Card className={styles.categorySelectorCard}>
-            <Card.Header>
+            <Card.Header className="bg-transparent">
                <div className="d-flex align-items-center justify-content-between">
                   <Form.Check
                      reverse
@@ -52,11 +37,18 @@ export const InfiniteNestedCategoryList = (props: IInfiniteNestedCategoryListPro
 
                         const recursiveChild = getCategoryAndChildrenId(categoryData);
                         if (e.target.checked) {
-                           onCheck([...selectedCategories, ...recursiveChild]);
+                           const newCategories = [...selectedCategories, ...recursiveChild];
+                           const newCategoriesAccess = newCategories.reduce((prev, next) => {
+                              return { ...prev, [next]: categoriesAccess[next] ?? "read" };
+                           }, {});
+                           onCheck(newCategories, newCategoriesAccess);
                         } else {
                            const pickedCategoryChildIds = new Set(recursiveChild);
                            const final = selectedCategories.filter((category) => !pickedCategoryChildIds.has(category));
-                           onCheck([...final]);
+                           const newCategoriesAccess = final.reduce((prev, next) => {
+                              return { ...prev, [next]: categoriesAccess[next] ?? "read" };
+                           }, {});
+                           onCheck([...final], newCategoriesAccess);
                         }
                      }}
                   />
@@ -78,8 +70,9 @@ export const InfiniteNestedCategoryList = (props: IInfiniteNestedCategoryListPro
                            isParent={false}
                            categoryData={category}
                            selectedCategories={selectedCategories}
-                           onCheck={(categories) => {
-                              onCheck(categories);
+                           categoriesAccess={categoriesAccess}
+                           onCheck={(categories, newCategoriesAccess) => {
+                              onCheck(categories, newCategoriesAccess);
                            }}
                         />
                      ))}
@@ -92,30 +85,54 @@ export const InfiniteNestedCategoryList = (props: IInfiniteNestedCategoryListPro
 };
 
 export const CategorySelector = (props: ICategorySelectorProps) => {
-   const { selectedCategories, selectedProductId, onSelectCategory } = props;
+   const { selectedCategories, selectedProductId, onSelectCategory, categoriesAccess } = props;
    const [searchedTitle, setSearchedTitle] = useState("");
 
    const availableProductCategories = rawCategories.filter(
       (category) => category.productId === selectedProductId && category.name.includes(searchedTitle)
    );
 
-   console.log(setSearchedTitle);
+   const onSearchChange = (searchedText: string) => {
+      setSearchedTitle(searchedText);
+   };
 
    return (
-      <Card className={styles.categorySelectorCard}>
-         <CardBody className={styles.categorySelectorCardBody}>
-            {availableProductCategories.map((availableCategory) => (
-               <InfiniteNestedCategoryList
-                  key={availableCategory.id}
-                  isParent
-                  selectedCategories={selectedCategories}
-                  categoryData={availableCategory}
-                  onCheck={(categories) => {
-                     onSelectCategory(categories);
+      <div className={styles.categorySelector}>
+         <Card className={styles.categorySelectorCardMain}>
+            <InputGroup className="mb-100 border-bottom">
+               <InputGroup.Text className="border-0 p-0">
+                  <BsSearch fontSize={18} color="var(--bs-secondary-color)" />
+               </InputGroup.Text>
+
+               <Form.Control
+                  placeholder="جستجو..."
+                  className="border-0 "
+                  style={{ boxShadow: "none", backgroundColor: "#f9f9f9" }}
+                  onChange={({ target }) => {
+                     onSearchChange(target.value);
                   }}
                />
-            ))}
-         </CardBody>
-      </Card>
+            </InputGroup>
+
+            <CardBody className={styles.categorySelectorCardBody}>
+               {availableProductCategories.length ? (
+                  availableProductCategories.map((availableCategory) => (
+                     <InfiniteNestedCategoryList
+                        key={availableCategory.id}
+                        isParent
+                        selectedCategories={selectedCategories}
+                        categoryData={availableCategory}
+                        categoriesAccess={categoriesAccess}
+                        onCheck={(categories, newCategoriesAccess) => {
+                           onSelectCategory(categories, newCategoriesAccess);
+                        }}
+                     />
+                  ))
+               ) : (
+                  <p className="text-center fs-7 text-body-tertiary">موردی موجود نمی‌باشد</p>
+               )}
+            </CardBody>
+         </Card>
+      </div>
    );
 };
